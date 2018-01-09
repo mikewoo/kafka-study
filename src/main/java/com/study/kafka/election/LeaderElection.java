@@ -23,7 +23,7 @@ public class LeaderElection {
 
 	private final String ROOT = "/kafka";
 
-	private final String LEADER = "leader";
+	private final String LEADER = "/kafka/leader";
 	
 	private final byte[] DEFAULT_DATA = {0x11, 0x12};
 
