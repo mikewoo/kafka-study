@@ -1,4 +1,4 @@
-package com.study.kafka;
+package com.study.kafka.consumer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,25 +9,24 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
 
-public class ConsumerDemo {
+public class ConsumerPauseDemo2 {
 
 	private static KafkaConsumer<String, String> consumer;
 
 	private static List<String> topics;
 
 	public static void main(String[] args) {
-		String topic = args[0];
-		String groupId = args[1];
-		String consumerid = args[2];
+		String topic = "topic-safe";
+		String groupId = "consumer-pause";
+		String consumerid = "consumer02";
 		Properties properties = new Properties();
-		properties.put("bootstrap.servers", "192.168.33.101:9092");
-		properties.put("group.id", groupId);// consumer的分组id
-		properties.put("auto.commit.interval.ms", "1000");// 每隔1s，自动提交offsets
+		properties.put("bootstrap.servers", "192.168.33.100:9092");
+		properties.put("group.id", groupId);
+		properties.put("auto.commit.interval.ms", "1000");
 		properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		topics = Arrays.asList(topic);
 		consumer = new KafkaConsumer<>(properties);
-
 		try {
 			consumer.subscribe(topics);
 			while (true) {
@@ -44,6 +43,5 @@ public class ConsumerDemo {
 		} finally {
 			consumer.close();
 		}
-
 	}
 }

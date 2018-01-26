@@ -49,7 +49,7 @@ public class RoundRobinPartitioner implements Partitioner {
         } else {
             // hash the keyBytes to choose a partition
             // System.out.println("value is " + value + ", data partitions is " + (Utils.toPositive(Utils.murmur2(keyBytes)) % numPartitions));
-            System.out.println(this);
+            // System.out.println(this);
             return Utils.toPositive(Utils.murmur2(keyBytes)) % numPartitions;
         }
     }
